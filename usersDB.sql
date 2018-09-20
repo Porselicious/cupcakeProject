@@ -33,6 +33,7 @@ USE `usersDB` ;
 CREATE TABLE IF NOT EXISTS `usersDB`.`user` (
   `username` VARCHAR(8) NOT NULL,
   `password` VARCHAR(8) NOT NULL,
+  `email` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`username`));
 
 
