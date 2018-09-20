@@ -18,7 +18,15 @@ public class TestUsersDAO {
         User user = new User("Prins","1234");
         user.setBalance(10);
         UsersDAO dao = new UsersDAO();
-        dao.createUser(user);
+        
+        try {
+            User user2 = dao.getUser("");
+            System.out.println(user2);
+            
+        } catch (Exception e) {
+            System.out.println(e + " USER DOESN'T EXIST!");
+        }
+//        dao.createUser(user);
     }
     
 }

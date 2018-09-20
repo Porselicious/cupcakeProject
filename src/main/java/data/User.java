@@ -17,6 +17,11 @@ public class User {
         this.balance = 0;
     }
 
+    @Override
+    public String toString() {
+        return "User{" + "username=" + username + ", password=" + password + ", email=" + email + ", balance=" + balance + '}';
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
