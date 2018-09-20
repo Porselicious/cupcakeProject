@@ -3,6 +3,7 @@ package data;
 public class User {
     private String username;
     private String password;
+    private String email;
     private int balance;
     
     public User() {
@@ -12,7 +13,16 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.balance = 0;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getUsername() {

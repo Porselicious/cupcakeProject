@@ -26,7 +26,7 @@ public class UsersDAO {
         try {
             Statement stmt = con.getConnection().createStatement();
             String query = "insert into usersDB.user\n"
-                    + "values ('"+ user.getUsername() +"', '"+ user.getPassword() +"');";
+                    + "values ('"+ user.getUsername() +"', '"+ user.getPassword() +"', '"+ user.getEmail() +"');";
 
             stmt.executeUpdate(query);
 //            System.out.println(rs);
