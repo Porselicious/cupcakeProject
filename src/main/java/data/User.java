@@ -6,12 +6,13 @@ public class User {
     private int balance;
     
     public User() {
-        
+        this.balance = 0;
     }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.balance = 0;
     }
 
     public String getUsername() {
