@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,15 +34,20 @@ public class Validate extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        User user = new User();
+        HttpSession session;
         data.UsersDAO dao = new data.UsersDAO();
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        if (!dao.getUser(username).getPassword().equals(password)) {
+        User user = dao.getUser(username);
+        
+        
+        if (user == null || !user.getPassword().equals(password)) {
             response.sendRedirect("/CupCakeProject/LoginServlet");
         } else {
-
+            
+            session = request.getSession();
+            session.setAttribute("user", user);
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 out.println("<!DOCTYPE html>");
@@ -51,7 +57,7 @@ public class Validate extends HttpServlet {
                 out.println("</head>");
                 out.println("<body>");
                 out.println("<h1>Hello " + username + "</h1>");
-
+                out.println("<h1>Hello " + session.getId() + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
             }

@@ -32,26 +32,41 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>LoginServlet</h1>");
-            out.println("<form action = \"Validate\" method = \"POST\">");
-            out.println("username: <input type = \"text\" name='username'>");
-            out.println("<br />");
-            out.println("password: <input type = \"text\"  name='password' />");
-            out.println("<br />");
-            out.println("<input type = \"submit\" value = \"Login\" >");
-            out.println("</form>");
+        if (request.getSession(false) == null) {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet LoginServlet</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>LoginServlet</h1>");
+                out.println("<form action = \"Validate\" method = \"POST\">");
+                out.println("username: <input type = \"text\" name='username'>");
+                out.println("<br />");
+                out.println("password: <input type = \"text\"  name='password' />");
+                out.println("<br />");
+                out.println("<input type = \"submit\" value = \"Login\" >");
+                out.println("</form>");
 
-            
-            out.println("</body>");
-            out.println("</html>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        } else {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet LoginServlet</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>You are already logged in " + request.getSession(false).getAttribute("user") + "</h1>");
+
+                out.println("</body>");
+                out.println("</html>");
+            }
         }
     }
 

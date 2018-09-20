@@ -59,7 +59,7 @@ public class UsersDAO {
         } catch (Exception e) {
             System.out.println(e);
         }
-        if (user.getUsername().isEmpty()) {
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
             return null;
         }
         return user;
