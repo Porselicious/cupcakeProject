@@ -8,6 +8,7 @@ public class User {
     
     public User() {
         this.balance = 0;
+        this.username = null;
     }
 
     public User(String username, String password) {

@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,8 +40,10 @@ public class UsersDAO {
     }
 
     public User getUser(String userName) {
+        if (userName == null || userName.isEmpty())
+            return null;
         ResultSet rs = null;
-        User user = new User();
+        User localUser = new User();
         try {
             Statement stmt = con.getConnection().createStatement();
             String query = "SELECT * FROM usersDB.user natural join usersDB.balance\n"
@@ -49,19 +52,16 @@ public class UsersDAO {
             rs = stmt.executeQuery(query);
 
             if (rs.next()) {
-                user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
-                user.setBalance(rs.getInt("amount"));
-                user.setEmail(rs.getString("email"));
-
+                localUser.setUsername(rs.getString("username"));
+                localUser.setPassword(rs.getString("password"));
+                localUser.setBalance(rs.getInt("amount"));
+                localUser.setEmail(rs.getString("email"));
+                return localUser;
             }
 //            return user;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
-        if (user.getUsername() == null || user.getUsername().isEmpty()) {
-            return null;
-        }
-        return user;
+        return null;
     }
 }
