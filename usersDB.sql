@@ -11,6 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
+DROP database if exists `usersDB`;
 CREATE SCHEMA IF NOT EXISTS `usersDB` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema usersDB
@@ -20,10 +21,10 @@ USE `usersDB` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `usersDB`.`users` (
-  `password` INT NOT NULL,
-  `name` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`password`, `name`));
+#CREATE TABLE IF NOT EXISTS `usersDB`.`users` (
+#  `password` INT NOT NULL,
+#  `name` VARCHAR(255) NOT NULL,
+#  PRIMARY KEY (`password`, `name`));
 
 
 -- -----------------------------------------------------
@@ -32,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `usersDB`.`users` (
 CREATE TABLE IF NOT EXISTS `usersDB`.`user` (
   `username` VARCHAR(8) NOT NULL,
   `password` VARCHAR(8) NOT NULL,
-  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`username`));
 
 
