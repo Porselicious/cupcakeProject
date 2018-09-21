@@ -44,7 +44,8 @@ public class Validate extends HttpServlet {
         
         if (user == null || !user.getPassword().equals(password)) {
             response.sendRedirect("/CupCakeProject/LoginServlet");
-        } else {
+            return;
+        } 
             
             session = request.getSession();
             session.setAttribute("user", user);
@@ -60,7 +61,7 @@ public class Validate extends HttpServlet {
                 out.println("<h1>Hello " + session.getId() + "</h1>");
                 out.println("</body>");
                 out.println("</html>");
-            }
+            
         }
     }
 
