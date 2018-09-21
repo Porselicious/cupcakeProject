@@ -6,6 +6,11 @@ package data;
  */
 public class LineItem {
     private CupCake cake;
+
+    @Override
+    public String toString() {
+        return "LineItem{" + "cake=" + cake + ", quantity=" + quantity + '}';
+    }
     private int quantity;
     private String invoice_id;
 

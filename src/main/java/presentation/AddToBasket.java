@@ -45,8 +45,8 @@ public class AddToBasket extends HttpServlet {
             String bottoms = request.getParameter("bottom");
             String tops = request.getParameter("top");
             //System.out.println(tops+bottoms);
-        String str_qty = request.getParameter("qty");
-        int qty = Integer.parseInt(str_qty);
+            String str_qty = request.getParameter("qty");
+            int qty = Integer.parseInt(str_qty);
 
             UsersDAO dao = new UsersDAO();
             CupCake cake = new CupCake(dao.getTop(tops), dao.getBottom(bottoms));
@@ -69,8 +69,12 @@ public class AddToBasket extends HttpServlet {
                 out.println("<title>Servlet AddToBasket</title>");
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Servlet AddToBasket at " + user.getBasket().getTotalPrice() + "</h1>");
-                out.println("</body>");
+                out.println("<h1>Cupcake added</h1>");
+                
+                out.println("<form action=\"CreateCupcake\" method=\"POST\">");
+
+                out.println("<button type=\"Submit\">Add more cupcakes</button>");
+                out.println("<button type=\"Submit\" formaction=\"Checkout\">Checkout</button>");
                 out.println("</html>");
             }
         }

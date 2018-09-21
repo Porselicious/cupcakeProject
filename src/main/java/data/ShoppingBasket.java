@@ -14,6 +14,11 @@ import java.util.ArrayList;
 public class ShoppingBasket {
 
     private ArrayList<LineItem> basket;
+
+    @Override
+    public String toString() {
+        return "ShoppingBasket{" + "basket=" + basket + ", totalPrice=" + totalPrice + '}';
+    }
     private int totalPrice;
 
 

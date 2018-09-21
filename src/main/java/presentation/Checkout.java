@@ -5,9 +5,7 @@
  */
 package presentation;
 
-import data.CupCake;
-import data.ShoppingBasket;
-import data.UsersDAO;
+import data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jonab
  */
-@WebServlet(name = "CreateCupcake", urlPatterns = {"/CreateCupcake"})
-public class CreateCupcake extends HttpServlet {
+@WebServlet(name = "Checkout", urlPatterns = {"/Checkout"})
+public class Checkout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,41 +33,18 @@ public class CreateCupcake extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        UsersDAO dao = new UsersDAO();
-//        CupCake cupcake = new CupCake();
-//        ShoppingBasket sb = new ShoppingBasket();
+        
+        User user = (User) request.getSession(false).getAttribute("user");
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateCupcake</title>");
+            out.println("<title>Servlet Checkout</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateCupcake at " + request.getContextPath() + "</h1>");
-            out.println("<form action=\"AddToBasket\" method=\"POST\" id=\"extras\">");
-
-            out.println("<select name=\"bottom\" form=\"extras\">");
-            for (int i = 0; i < dao.getBottoms().size(); i++) {
-                out.println("<option value=\"" + dao.getBottoms().get(i).getName() + "\">" + dao.getBottoms().get(i).getName() + ", " + dao.getBottoms().get(i).getPrice() + " kr" + "</option>");
-            }
-            out.println("</select>");
-            out.println("<select name=\"top\" form=\"extras\">");
-            for (int i = 0; i < dao.getTops().size(); i++) {
-                out.println("<option value=\"" + dao.getTops().get(i).getName() + "\">" + dao.getTops().get(i).getName() + ", " + dao.getTops().get(i).getPrice() + " kr" + "</option>");
-            }
-
-            out.println("</select>");
-            out.println("<select name=\"qty\" form=\"extras\">");
-                out.println("<option value=\"1\">1</option>");
-                out.println("<option value=\"2\">2</option>");
-                out.println("<option value=\"3\">3</option>");
-            out.println("</select>");
-            out.println("<button type=\"submit\" name=\"submit\">Add to Shopping Cart </button>");
-            out.println("</form>");
-
+            out.println("<h1>Servlet Checkout at " + user.getBasket().getBasket().toString() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

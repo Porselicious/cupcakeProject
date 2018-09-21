@@ -8,6 +8,11 @@ public class CupCake {
     private Bottom bottom;
     private int fullPrice;
 
+    @Override
+    public String toString() {
+        return "CupCake{" + "name=" + name + '}';
+    }
+
     public CupCake(Top top, Bottom bottom) {
         this.top = top;
         this.bottom = bottom;
