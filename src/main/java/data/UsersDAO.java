@@ -91,7 +91,7 @@ public class UsersDAO {
         Bottom bottom = null;
         try {
             Statement stmt = con.getConnection().createStatement();
-            String query = "SELECT * FROM usersDB.bottom"
+            String query = "SELECT * FROM usersDB.bottom "
                     + "where bottomName = '"+bottomName+"';";
 
             rs = stmt.executeQuery(query);
@@ -111,7 +111,7 @@ public class UsersDAO {
         Top top = null;
         try {
             Statement stmt = con.getConnection().createStatement();
-            String query = "SELECT * FROM usersDB.topping"
+            String query = "SELECT * FROM usersDB.topping "
                     + "where toppingName = '"+topName+"';";
 
             rs = stmt.executeQuery(query);
@@ -119,7 +119,6 @@ public class UsersDAO {
             if (rs.next()) {
                 top = new Top(rs.getString("toppingName"), rs.getInt("price"));
             }
-//            return user;
         } catch (SQLException e) {
             System.out.println(e);
         }

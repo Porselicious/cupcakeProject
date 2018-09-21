@@ -39,37 +39,40 @@ public class AddToBasket extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        checkIfLoggedIn(request, response);
+        if (!checkIfLoggedIn(request, response)) {
+            response.sendRedirect("LoginOrNewUserServlet");
+        } else {
+            String bottoms = request.getParameter("bottom");
+            String tops = request.getParameter("top");
+            //System.out.println(tops+bottoms);
+        String str_qty = request.getParameter("qty");
+        int qty = Integer.parseInt(str_qty);
 
-        String bottoms = request.getParameter("bottom");
-        String tops = request.getParameter("top");
-//        String str_qty = request.getParameter("qty");
-//        int qty = Integer.parseInt(str_qty);
+            UsersDAO dao = new UsersDAO();
+            CupCake cake = new CupCake(dao.getTop(tops), dao.getBottom(bottoms));
+            LineItem li = new LineItem(cake, qty);
+            User user = null;
+            try {
+                user = (User) request.getSession(false).getAttribute("user");
+                user.getBasket().addItem(li);
+                request.getSession(false).setAttribute("user", user);
 
-        UsersDAO dao = new UsersDAO();
-        CupCake cake = new CupCake(dao.getTop(tops), dao.getBottom(bottoms));
-        LineItem li = new LineItem(cake, qty);
-        User user = null;
-        try {
-            user = (User) request.getSession(false).getAttribute("user");
-            user.getBasket().addCupcake(li);
-            request.getSession(false).setAttribute("user", user);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
 
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddToBasket</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddToBasket at " + user.getBasket().getTotalPrice() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet AddToBasket</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Servlet AddToBasket at " + user.getBasket().getTotalPrice() + "</h1>");
+                out.println("</body>");
+                out.println("</html>");
+            }
         }
     }
 
@@ -112,10 +115,8 @@ public class AddToBasket extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void checkIfLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (request.getSession(false) == null) {
-            response.sendRedirect("LoginOrNewUserServlet");
-        }
+    private boolean checkIfLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return request.getSession(false) != null;
     }
 
 }

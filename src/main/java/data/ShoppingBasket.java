@@ -13,16 +13,17 @@ import java.util.ArrayList;
  */
 public class ShoppingBasket {
 
-    private ArrayList<LineItem> basket = new ArrayList();
+    private ArrayList<LineItem> basket;
     private int totalPrice;
 
 
     public ShoppingBasket() {
+        basket = new ArrayList();
     }
 
     public int getTotalPrice() {
         for (int i = 0; i < basket.size(); i++) {
-            totalPrice += basket.get(i).getCake().getFullPrice();
+            totalPrice += (basket.get(i).getCake().getFullPrice()*basket.get(i).getQuantity());
         }
         return totalPrice;
     }
@@ -31,7 +32,7 @@ public class ShoppingBasket {
         return basket;
     }
     
-    public void addCupcake(LineItem item){
+    public void addItem(LineItem item){
         basket.add(item);
     }
     

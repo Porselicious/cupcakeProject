@@ -11,7 +11,7 @@ public class CupCake {
     public CupCake(Top top, Bottom bottom) {
         this.top = top;
         this.bottom = bottom;
-        this.name = bottom.getName().substring(0, 2) + top.getName().substring(0, 2);
+        this.name = top.getName() + bottom.getName(); //bottom.getName().substring(0, 2) + top.getName().substring(0, 2);
         this.fullPrice = bottom.getPrice() + top.getPrice();
     }
 

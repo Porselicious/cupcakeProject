@@ -3,7 +3,7 @@ package data;
 
 
 public class Bottom {
-    private String name;
+    private String name = "";
     private int price;
 
     public Bottom(String name, int price) {

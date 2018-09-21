@@ -62,11 +62,11 @@ public class CreateCupcake extends HttpServlet {
             }
 
             out.println("</select>");
-//            out.println("<select name=\"qty\" form=\"extras\">");
-//                out.println("<option value=\"1\">1</option>");
-//                out.println("<option value=\"2\">2</option>");
-//                out.println("<option value=\"3\">3</option>");
-//            out.println("</select>");
+            out.println("<select name=\"qty\" form=\"extras\">");
+                out.println("<option value=\"1\">1</option>");
+                out.println("<option value=\"2\">2</option>");
+                out.println("<option value=\"3\">3</option>");
+            out.println("</select>");
             out.println("<input type=\"submit\" name=\"submit\"/>");
             out.println("</form>");
 
