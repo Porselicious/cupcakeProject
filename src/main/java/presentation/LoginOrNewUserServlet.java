@@ -37,7 +37,7 @@ public class LoginOrNewUserServlet extends HttpServlet {
         } else {
             alreadyLoggedInHTML(response, request);
         }
-        
+
     }
 
     private void notLoggedInHTML(HttpServletResponse response) throws IOException {
@@ -51,17 +51,17 @@ public class LoginOrNewUserServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>LoginOrNewUserServlet</h1>");
             //out.println("<form action = \"Validate\" method = \"POST\">");
+            out.println("<form action=\"Validate\" method=\"POST\">");
             out.println("username: <input type = \"text\" name='username'>");
             out.println("<br />");
-            out.println("password: <input type = \"text\"  name='password' />");
+            out.println("password: <input type = \"text\"  name='password'>");
             out.println("<br />");
-            out.println("email: <input type = \"text\"  name='email' />");
-            out.println("<input type = \"submit\" value = \"Login\" " //test
-                    + " form action = \"Validate\" method = \"POST\">");
-            out.println("<input type = \"submit\" value = \"Create user\"" //test
-                    + " form action = \"SubmitUser\" method = \"POST\" >");
+            out.println("email: <input type = \"text\"  name='email'>");
+
+            out.println("<button type=\"submit\">Sign in</button><br>");
+            out.println("<button type=\"submit\" formaction=\"SubmitUser\">Sign up</button>");
             out.println("</form>");
-            
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,7 +77,7 @@ public class LoginOrNewUserServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>You are already logged in " + request.getSession(false).getAttribute("user") + "</h1>");
-            
+
             out.println("</body>");
             out.println("</html>");
         }

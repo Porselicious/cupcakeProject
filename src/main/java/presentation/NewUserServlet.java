@@ -33,6 +33,7 @@ public class NewUserServlet extends HttpServlet {
             out.println("<body>");
 
             out.println("<h1>Servlet NewUserServlet at " + request.getContextPath() + "</h1>");
+            out.println("<button>");
 
             out.println("<form action = \"SubmitUser\" method = \"POST\">");
             out.println("username: <input type = \"text\" name='username'>");
@@ -46,7 +47,7 @@ public class NewUserServlet extends HttpServlet {
 
             out.println("</body>");
             out.println("</html>");
-            
+
         }
     }
 
