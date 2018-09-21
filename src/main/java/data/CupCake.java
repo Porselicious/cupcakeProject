@@ -15,6 +15,10 @@ public class CupCake {
         this.fullPrice = bottom.getPrice() + top.getPrice();
     }
 
+    public CupCake() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getName() {
         return name;
     }

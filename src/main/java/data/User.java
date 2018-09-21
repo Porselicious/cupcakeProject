@@ -1,14 +1,18 @@
 package data;
 
 public class User {
+
     private String username;
     private String password;
     private String email;
     private int balance;
-    
+    private ShoppingBasket basket;
+
     public User() {
         this.balance = 0;
         this.username = null;
+        this.basket = new ShoppingBasket();
+
     }
 
     public User(String username, String password) {
@@ -16,6 +20,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.balance = 0;
+        this.basket = new ShoppingBasket();
     }
 
     @Override
@@ -54,9 +59,9 @@ public class User {
     public void setBalance(int balance) {
         this.balance = balance;
     }
-    
+
     public boolean withdraw(int price) {
-        if(balance >= price){
+        if (balance >= price) {
             this.balance -= price;
             return true;
         }
@@ -64,4 +69,5 @@ public class User {
     }
     
     
+
 }

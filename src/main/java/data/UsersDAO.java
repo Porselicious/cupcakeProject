@@ -85,6 +85,46 @@ public class UsersDAO {
         }
         return bottoms;
     }
+    
+    public Bottom getBottom(String bottomName) {
+        ResultSet rs = null;
+        Bottom bottom = null;
+        try {
+            Statement stmt = con.getConnection().createStatement();
+            String query = "SELECT * FROM usersDB.bottom"
+                    + "where bottomName = '"+bottomName+"';";
+
+            rs = stmt.executeQuery(query);
+
+            if (rs.next()) {
+                bottom = new Bottom(rs.getString("bottomName"), rs.getInt("price"));
+            }
+//            return user;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return bottom;
+    }
+    
+    public Top getTop(String topName) {
+        ResultSet rs = null;
+        Top top = null;
+        try {
+            Statement stmt = con.getConnection().createStatement();
+            String query = "SELECT * FROM usersDB.topping"
+                    + "where toppingName = '"+topName+"';";
+
+            rs = stmt.executeQuery(query);
+
+            if (rs.next()) {
+                top = new Top(rs.getString("toppingName"), rs.getInt("price"));
+            }
+//            return user;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return top;
+    }
 
     public ArrayList<Top> getTops() {
         ResultSet rs = null;

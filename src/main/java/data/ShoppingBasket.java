@@ -31,4 +31,8 @@ public class ShoppingBasket {
         return basket;
     }
     
+    public void addCupcake(CupCake cake){
+        basket.add(cake);
+    }
+    
 }
