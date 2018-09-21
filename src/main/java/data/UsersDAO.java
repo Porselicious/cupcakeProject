@@ -3,6 +3,7 @@ package data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,8 +41,9 @@ public class UsersDAO {
     }
 
     public User getUser(String userName) {
-        if (userName == null || userName.isEmpty())
+        if (userName == null || userName.isEmpty()) {
             return null;
+        }
         ResultSet rs = null;
         User localUser = new User();
         try {
@@ -63,5 +65,43 @@ public class UsersDAO {
             System.out.println(e);
         }
         return null;
+    }
+
+    public ArrayList<Bottom> getBottoms() {
+        ResultSet rs = null;
+        ArrayList<Bottom> bottoms = new ArrayList();
+        try {
+            Statement stmt = con.getConnection().createStatement();
+            String query = "SELECT * FROM usersDB.bottom;";
+
+            rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                bottoms.add(new Bottom(rs.getString("bottomName"), rs.getInt("price")));
+            }
+//            return user;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return bottoms;
+    }
+
+    public ArrayList<Top> getTops() {
+        ResultSet rs = null;
+        ArrayList<Top> tops = new ArrayList();
+        try {
+            Statement stmt = con.getConnection().createStatement();
+            String query = "SELECT * FROM usersDB.topping;";
+
+            rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                tops.add(new Top(rs.getString("toppingName"), rs.getInt("price")));
+            }
+//            return user;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return tops;
     }
 }
