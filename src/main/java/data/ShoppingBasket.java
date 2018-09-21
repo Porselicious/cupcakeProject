@@ -13,8 +13,9 @@ import java.util.ArrayList;
  */
 public class ShoppingBasket {
 
-    ArrayList<CupCake> basket = new ArrayList();
-    int totalPrice;
+    private ArrayList<CupCake> basket = new ArrayList();
+    private int totalPrice;
+
 
     public ShoppingBasket() {
     }
@@ -25,4 +26,9 @@ public class ShoppingBasket {
         }
         return totalPrice;
     }
+    
+    public ArrayList<CupCake> getBasket() {
+        return basket;
+    }
+    
 }
