@@ -49,20 +49,21 @@ public class CreateCupcake extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CreateCupcake at " + request.getContextPath() + "</h1>");
-            out.println("<form action=\"AddToBasket\" method=\"POST\">");
+            out.println("<form action=\"AddToBasket\" method=\"POST\" id=\"bottops[]\">");
 
-            out.println("<select>");
+            out.println("<select value=\"bottoms\" id=\"bottops\">");
             for (int i = 0; i < dao.getBottoms().size(); i++) {
-                out.println("<option value=\"bottoms\">" + dao.getBottoms().get(i).getName() + ", " + dao.getBottoms().get(i).getPrice() + " kr" + "</option>");
+                out.println("<option value=\"bottom\">" + dao.getBottoms().get(i).getName() + ", " + dao.getBottoms().get(i).getPrice() + " kr" + "</option>");
             }
             out.println("</select>");
-            out.println("<select>");
+            out.println("<select value=\"tops\" id=\"bottops\">");
             for (int i = 0; i < dao.getTops().size(); i++) {
-                out.println("<option value=\"tops\">" + dao.getTops().get(i).getName() + ", " + dao.getTops().get(i).getPrice() + " kr" + "</option>");
+                out.println("<option value=\"top\">" + dao.getTops().get(i).getName() + ", " + dao.getTops().get(i).getPrice() + " kr" + "</option>");
             }
 
             out.println("</select>");
-            out.println("<button type=\"submit\">add to basket</button><br>");
+            out.println("<input type=\"submit\" name=\"submit\" value =\"submit\" />");
+            out.println("</form>");
 
             out.println("</body>");
             out.println("</html>");

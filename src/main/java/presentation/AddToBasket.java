@@ -39,12 +39,14 @@ public class AddToBasket extends HttpServlet {
 
         checkIfLoggedIn(request, response);
 
-        String bottoms = request.getParameter("bottoms");
-        String tops = request.getParameter("tops");
+        String bottoms[] = request.getParameter("bottom").split(",");
+        String tops[] = request.getParameter("top").split(",");
+        String bottom = bottoms[0].trim();
+        String top = tops[0].trim();
         
-        System.out.println(bottoms + tops);
-        UsersDAO dao = new UsersDAO();
-        CupCake cake = new CupCake(dao.getTop(tops), dao.getBottom(bottoms));
+        System.out.println(top + bottom);
+//        UsersDAO dao = new UsersDAO();
+//        CupCake cake = new CupCake(dao.getTop(tops), dao.getBottom(bottoms));
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -54,7 +56,7 @@ public class AddToBasket extends HttpServlet {
             out.println("<title>Servlet AddToBasket</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddToBasket at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddToBasket at " + bottoms +  tops + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
