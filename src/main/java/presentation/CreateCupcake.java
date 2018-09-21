@@ -49,20 +49,25 @@ public class CreateCupcake extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CreateCupcake at " + request.getContextPath() + "</h1>");
-            out.println("<form action=\"AddToBasket\" method=\"POST\" id=\"bottops[]\">");
+            out.println("<form action=\"AddToBasket\" method=\"POST\" id=\"extras\">");
 
-            out.println("<select value=\"bottoms\" id=\"bottops\">");
+            out.println("<select name=\"bottom\" form=\"extras\">");
             for (int i = 0; i < dao.getBottoms().size(); i++) {
-                out.println("<option value=\"bottom\">" + dao.getBottoms().get(i).getName() + ", " + dao.getBottoms().get(i).getPrice() + " kr" + "</option>");
+                out.println("<option value=\"" + dao.getBottoms().get(i).getName() + "\">" + dao.getBottoms().get(i).getName() + ", " + dao.getBottoms().get(i).getPrice() + " kr" + "</option>");
             }
             out.println("</select>");
-            out.println("<select value=\"tops\" id=\"bottops\">");
+            out.println("<select name=\"top\" form=\"extras\">");
             for (int i = 0; i < dao.getTops().size(); i++) {
-                out.println("<option value=\"top\">" + dao.getTops().get(i).getName() + ", " + dao.getTops().get(i).getPrice() + " kr" + "</option>");
+                out.println("<option value=\"" + dao.getTops().get(i).getName() + "\">" + dao.getTops().get(i).getName() + ", " + dao.getTops().get(i).getPrice() + " kr" + "</option>");
             }
 
             out.println("</select>");
-            out.println("<input type=\"submit\" name=\"submit\" value =\"submit\" />");
+//            out.println("<select name=\"qty\" form=\"extras\">");
+//                out.println("<option value=\"1\">1</option>");
+//                out.println("<option value=\"2\">2</option>");
+//                out.println("<option value=\"3\">3</option>");
+//            out.println("</select>");
+            out.println("<input type=\"submit\" name=\"submit\"/>");
             out.println("</form>");
 
             out.println("</body>");

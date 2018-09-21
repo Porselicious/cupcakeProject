@@ -4,6 +4,10 @@ public class User {
 
     private String username;
     private String password;
+
+    public ShoppingBasket getBasket() {
+        return basket;
+    }
     private String email;
     private int balance;
     private ShoppingBasket basket;

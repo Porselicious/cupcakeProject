@@ -6,6 +6,8 @@
 package presentation;
 
 import data.CupCake;
+import data.LineItem;
+import data.User;
 import data.UsersDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,14 +41,23 @@ public class AddToBasket extends HttpServlet {
 
         checkIfLoggedIn(request, response);
 
-        String bottoms[] = request.getParameter("bottom").split(",");
-        String tops[] = request.getParameter("top").split(",");
-        String bottom = bottoms[0].trim();
-        String top = tops[0].trim();
-        
-        System.out.println(top + bottom);
-//        UsersDAO dao = new UsersDAO();
-//        CupCake cake = new CupCake(dao.getTop(tops), dao.getBottom(bottoms));
+        String bottoms = request.getParameter("bottom");
+        String tops = request.getParameter("top");
+//        String str_qty = request.getParameter("qty");
+//        int qty = Integer.parseInt(str_qty);
+
+        UsersDAO dao = new UsersDAO();
+        CupCake cake = new CupCake(dao.getTop(tops), dao.getBottom(bottoms));
+        LineItem li = new LineItem(cake, qty);
+        User user = null;
+        try {
+            user = (User) request.getSession(false).getAttribute("user");
+            user.getBasket().addCupcake(li);
+            request.getSession(false).setAttribute("user", user);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -56,7 +67,7 @@ public class AddToBasket extends HttpServlet {
             out.println("<title>Servlet AddToBasket</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddToBasket at " + bottoms +  tops + "</h1>");
+            out.println("<h1>Servlet AddToBasket at " + user.getBasket().getTotalPrice() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

@@ -9,6 +9,11 @@ public class LineItem {
     private int quantity;
     private String invoice_id;
 
+    public LineItem(CupCake cake, int quantity) {
+        this.cake = cake;
+        this.quantity = quantity;
+    }
+
     public CupCake getCake() {
         return cake;
     }
